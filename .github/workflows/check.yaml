@@ -14,7 +14,7 @@ jobs:
       - name: echo event
         run: |
           echo "is pull request: ${{ github.event }}"
-
+        if: github.event.pull_request != null
 
       - name: no PR
         run: |
