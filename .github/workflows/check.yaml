@@ -1,0 +1,16 @@
+name: Checks
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo event
+        run: |
+          echo "is pull request: ${{ github.event }}"
+        if: github.event.pull_request != null
+
