@@ -3,7 +3,9 @@ name: Checks
 on:
   workflow_dispatch:
   push:
+    branches: [ "main", "release/**",  "check_actions*" ]
   pull_request:
+    branches: [ "main", "release/**" , "check_actions*"]
 
 jobs:
   test:
@@ -14,3 +16,7 @@ jobs:
           echo "is pull request: ${{ github.event }}"
         if: github.event.pull_request != null
 
+      - name: no PR
+        run: |
+          echo "no pull request"
+        if: github.event.pull_request == null
