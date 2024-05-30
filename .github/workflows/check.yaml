@@ -1,0 +1,22 @@
+name: Checks
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main", "release/**",  "check_actions*" ]
+  pull_request:
+    branches: [ "main", "release/**" , "check_actions*"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo PR
+        run: |
+          echo "is pull request: ${{ github.event.pull_request }}"
+        if: github.event.pull_request
+
+      - name: no PR
+        run: |
+          echo "no pull request"
+        if: github.event.pull_request == null
